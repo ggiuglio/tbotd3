@@ -1,0 +1,8 @@
+.loader {
+    margin-top: 100px;
+    text-align: center;
+}
+.loader img {
+    width: 100px;
+    height: 100px;
+}

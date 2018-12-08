@@ -1,0 +1,87 @@
+{
+  "pcs" : [
+    {
+      "id": "rondel",
+      "description": "Il buon Rondell",
+      "level": 1,
+      "name": "Rondel"
+    },
+    {
+      "id": "tzel",
+      "description": "Il caro vecchio Tzel",
+      "level": 1,
+      "name": "Tzel"
+    }
+  ],
+  "games": {
+    "pcs": [
+      {
+        "id": "rondel",
+        "name": "Rondel",
+        "description": "Il buon Rondel",
+        "level": 1
+      },
+      {
+        "id": "tzel",
+        "name": "Tzel",
+        "description": "Il caro vecchio Tzel",
+        "level": 1
+      }
+    ],
+    "name": "game-1",
+    "stageId": 0
+  },
+  "stages": [
+    {
+      "map": "img/maps/laFugaDiTzel",
+      "name": "La fuga di Tzel",
+      "pcTeam": [
+        "tzel"
+      ],
+      "npcTeams" : 
+      [
+        {
+          "name": "guards",
+          "characters": [
+            {
+              "id":  "guard-1",
+              "level" : 1,
+              "name" : "Guard"
+            },
+            {
+              "id":  "guard-2",
+              "level" : 1,
+              "name" : "Guard"
+            }
+          ] 
+        }
+      ]
+    },
+    {
+      "map": "img/maps/rondelFaCose",
+      "name": "Rondel fa cose",
+      "pcTeam": [
+        "tzel",
+        "rondel"
+      ],
+      "npcTeams" : 
+      [
+        {
+          "name": "guards",
+          "characters": [
+            {
+              "id":  "guard-1",
+              "level" : 1,
+              "name" : "Guard"
+            },
+            {
+              "id":  "guard-2",
+              "level" : 1,
+              "name" : "Guard"
+            }
+          ] 
+        }
+      ]
+    } 
+  ]
+}
