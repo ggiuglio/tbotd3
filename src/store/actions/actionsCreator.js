@@ -1,4 +1,6 @@
 import axios from 'axios';
+import store from '../store';
+
 import { stages } from "../../firebase/firbase.js"
 import { games } from "../../firebase/firbase.js"
 
@@ -26,8 +28,25 @@ export const loadStage = (stageId) => {
     stages.orderByKey().equalTo(stageId.toString()).on('value', snapshot => {
       const res = snapshot.val()[stageId];
       const stage = {
-        map: res.map,
+        id: stageId,
         name: res.name
+      };
+      dispatch({
+        type: "SET_STAGE",
+        payload: stage
+      });
+      dispatch(loadLevel(stageId, 0));
+    });
+  }
+}
+
+export const loadLevel = (stageId, levelId) => {
+  return dispatch => {
+    stages.orderByKey().equalTo(stageId.toString()).on('value', snapshot => {
+      const res = snapshot.val()[stageId].levels[levelId];
+      const level = {
+        map: res.map,
+        id: levelId
       };
       const pcs = res.pcTeam;
       const npcs = res.npcTeams.reduce((charList, team) => {
@@ -38,8 +57,8 @@ export const loadStage = (stageId) => {
       }, []);
 
       dispatch({
-        type: "SET_STAGE",
-        payload: stage
+        type: "SET_LEVEL",
+        payload: level
       });
       dispatch({
         type: "SET_ACTIVE_PCS",

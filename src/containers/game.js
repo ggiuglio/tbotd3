@@ -13,12 +13,13 @@ class GameContainer extends Component {
         return <div key={c.id}> name: {c.name}</div>
     });
     const stageName = this.props.stage ? this.props.stage.name : "Loading";
+    const level = this.props.level ? ` - ${this.props.level.id + 1} ${this.props.level.map}` : "";
 
     return (
       <div>
         TBODT 3 (quella buona)
         <div>
-          {stageName}
+          {stageName} {level}
         </div>
        
         <div>
@@ -35,7 +36,8 @@ class GameContainer extends Component {
 const mapStateToProps = state => {
   return { 
     characters: state.characterList,
-    stage: state.stage
+    stage: state.stage,
+    level: state.level
   }
 };
 

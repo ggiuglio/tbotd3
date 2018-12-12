@@ -33,53 +33,61 @@
   },
   "stages": [
     {
-      "map": "img/maps/laFugaDiTzel",
       "name": "La fuga di Tzel",
-      "pcTeam": [
-        "tzel"
-      ],
-      "npcTeams" : 
-      [
+      "levels": [
         {
-          "name": "guards",
-          "characters": [
+          "map": "img/maps/laFugaDiTzel",
+          "pcTeam": [
+            "tzel"
+          ],
+          "npcTeams" : 
+          [
             {
-              "id":  "guard-1",
-              "level" : 1,
-              "name" : "Guard"
-            },
-            {
-              "id":  "guard-2",
-              "level" : 1,
-              "name" : "Guard"
+              "name": "guards",
+              "characters": [
+                {
+                  "id":  "guard-1",
+                  "level" : 1,
+                  "name" : "Guard"
+                },
+                {
+                  "id":  "guard-2",
+                  "level" : 1,
+                  "name" : "Guard"
+                }
+              ] 
             }
-          ] 
+          ]
         }
       ]
     },
     {
-      "map": "img/maps/rondelFaCose",
       "name": "Rondel fa cose",
-      "pcTeam": [
-        "tzel",
-        "rondel"
-      ],
-      "npcTeams" : 
-      [
+      "levels": [
         {
-          "name": "guards",
-          "characters": [
+          "map": "img/maps/rondelFaCose",
+          "pcTeam": [
+            "tzel",
+            "rondel"
+          ],
+          "npcTeams" : 
+          [
             {
-              "id":  "guard-1",
-              "level" : 1,
-              "name" : "Guard"
-            },
-            {
-              "id":  "guard-2",
-              "level" : 1,
-              "name" : "Guard"
+              "name": "guards",
+              "characters": [
+                {
+                  "id":  "guard-1",
+                  "level" : 1,
+                  "name" : "Guard"
+                },
+                {
+                  "id":  "guard-2",
+                  "level" : 1,
+                  "name" : "Guard"
+                }
+              ] 
             }
-          ] 
+          ]
         }
       ]
     } 

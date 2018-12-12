@@ -1,5 +1,6 @@
 export const INITIAL_STATE = {
     stage: null,
+    level: null,
     gamePCs: [],
     characterList: []
 };
@@ -14,6 +15,10 @@ const Reducer = (state = INITIAL_STATE, action) => {
         case 'SET_STAGE':
         {
             return {...state, ...{stage: action.payload} }
+        }
+        case 'SET_LEVEL':
+        {
+            return {...state, ...{level: action.payload} }
         }
         case 'SET_ACTIVE_PCS':
         {
