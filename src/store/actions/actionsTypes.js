@@ -1,5 +1,6 @@
 export const SET_STAGE = "SET_STAGE"
 export const SET_LEVEL = "SET_LEVEL"
+export const LOAD_GAME = "LOAD_GAME"
 
 
 

@@ -8,6 +8,10 @@ export const INITIAL_STATE = {
 
 const Reducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case 'LOAD_GAME':
+        {
+            return INITIAL_STATE
+        }
         case 'SET_PCS':
         {
             return {...state, ...{gamePCs: action.payload} }

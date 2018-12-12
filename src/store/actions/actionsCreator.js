@@ -5,12 +5,16 @@ import { stages } from "../../firebase/firbase.js"
 import { games } from "../../firebase/firbase.js"
 
 
-import { SET_STAGE } from './actionsTypes.js'
+import { SET_STAGE, LOAD_GAME } from './actionsTypes.js'
 import { SET_PCS } from './actionsTypes.js'
 
 
 export const loadGame = () => {
   return dispatch => {
+    dispatch({
+      type: LOAD_GAME,
+      payload: null
+    });
     games.on('value', snapshot => {
       const game = snapshot.val();
       dispatch({

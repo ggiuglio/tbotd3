@@ -8,6 +8,11 @@ class GameContainer extends Component {
     this.props.loadGame();
   }
 
+  handleClick() {
+    console.log('click');
+    this.props.loadGame();
+  }
+
   render() {
     const characters = this.props.characters.map(c => {
         return <div key={c.id}> name: {c.name}</div>
@@ -27,6 +32,9 @@ class GameContainer extends Component {
         </div>
         <div>
           {characters}
+        </div>
+        <div onClick={(e) => this.handleClick(e)} >
+          RELOAD
         </div>
       </div>
     )
