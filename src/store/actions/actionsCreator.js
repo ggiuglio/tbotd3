@@ -72,6 +72,10 @@ export const loadLevel = (stageId, levelId) => {
         type: "SET_NPCS",
         payload: npcs
       })
+      dispatch({
+        type: "ADD_LOG_ENTRY",
+        payload: "Game loaded"
+      })
     });
   }
 }

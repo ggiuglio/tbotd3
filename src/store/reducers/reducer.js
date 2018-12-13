@@ -2,6 +2,7 @@ export const INITIAL_STATE = {
     stage: null,
     level: null,
     gamePCs: [],
+    logMessages: [],
     characterList: []
 };
 
@@ -40,6 +41,13 @@ const Reducer = (state = INITIAL_STATE, action) => {
             characterList.push(...action.payload);
             
             return {...state, ...{characterList: characterList} }
+        }
+        case 'ADD_LOG_ENTRY':
+        {
+            const messages = JSON.parse(JSON.stringify(state.logMessages));
+            messages.push(action.payload);
+            
+            return {...state, ...{logMessages: messages}}
         }
 
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadGame } from "../store/actions/actionsCreator.js";
 import { bindActionCreators } from "redux";
+import ActionLogConsole from "../components/actionLogConsole/actionLogConsole";
 
 class GameContainer extends Component {
   componentDidMount () {
@@ -9,7 +10,6 @@ class GameContainer extends Component {
   }
 
   handleClick() {
-    console.log('click');
     this.props.loadGame();
   }
 
@@ -36,6 +36,7 @@ class GameContainer extends Component {
         <div onClick={(e) => this.handleClick(e)} >
           RELOAD
         </div>
+        <ActionLogConsole messages = {this.props.logs}></ActionLogConsole>
       </div>
     )
   }
@@ -45,7 +46,8 @@ const mapStateToProps = state => {
   return { 
     characters: state.characterList,
     stage: state.stage,
-    level: state.level
+    level: state.level,
+    logs: state.logMessages
   }
 };
 
