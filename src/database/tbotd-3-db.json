@@ -1,117 +1,103 @@
 {
-  "pcs" : [
-    {
-      "id": "rondel",
-      "description": "Il buon Rondell",
-      "level": 1,
-      "name": "Rondel",
-      "stats": {
-        "str": 12,
-        "dex": 18,
-        "con": 13,
-        "int": 18,
-        "wis": 12,
-        "cha": 11,
-        "naturalArmor": 0,
-        "hp": 24,
-        "baseAttack": 1,
-        "baseSavingThrows": {
-          "reflex": 2,
-          "fortitude": 2,
-          "will": 2
-        },
-        "feats": [],
-        "skills": [],
-        "spells": []
-      },
-      "invenotry": [],
-      "liveStats": {
-        "str": 12,
-        "dex": 18,
-        "con": 13,
-        "int": 18,
-        "wis": 12,
-        "cha": 11,
-        "strBonus": 0,
-        "dexBonus": 4,
-        "conBonus": 1,
-        "intBonus": 4,
-        "wisBonus": 0,
-        "chaBonus": 0,
-        "armorClass": 13,
-        "hp": 24,
-        "hpLeft": 24,
-        "savingThrows": {
-          "reflex": 6,
-          "fortitude": 3,
-          "will": 3
-        }
-      }
-    },
-    {
-      "id": "tzel",
-      "description": "Il caro vecchio Tzel",
-      "level": 1,
-      "name": "Tzel",
-      "stats": {
-        "str": 14,
-        "dex": 16,
-        "con": 10,
-        "int": 13,
-        "wis": 17,
-        "cha": 8,
-        "naturalArmor": 0,
-        "hp": 24,
-        "baseAttack": 1,
-        "baseSavingThrows": {
-          "reflex": 2,
-          "fortitude": 2,
-          "will": 2
-        },
-        "feats": [],
-        "skills": [],
-        "spells": []
-      },
-      "invenotry": [],
-      "liveStats": {
-        "str": 14,
-        "dex": 16,
-        "con": 10,
-        "int": 13,
-        "wis": 17,
-        "cha": 8,
-        "strBonus": 2,
-        "dexBonus": 3,
-        "conBonus": 0,
-        "intBonus": 1,
-        "wisBonus": 3,
-        "chaBonus": -1,
-        "armorClass": 13,
-        "meleeAttack": 3,
-        "rangedAttack": 4,
-        "hp": 30,
-        "hpLeft": 30,
-        "savingThrows": {
-          "reflex": 5,
-          "fortitude": 2,
-          "will": 5
-        }
-      }
-    }
-  ],
   "games": {
-    "pcs": [
+    "pcs" : [
       {
         "id": "rondel",
+        "description": "Il buon Rondell",
+        "level": 1,
         "name": "Rondel",
-        "description": "Il buon Rondel",
-        "level": 1
+        "stats": {
+          "str": 12,
+          "dex": 18,
+          "con": 13,
+          "int": 18,
+          "wis": 12,
+          "cha": 11,
+          "naturalArmor": 0,
+          "hp": 24,
+          "baseAttack": 1,
+          "baseSavingThrows": {
+            "reflex": 2,
+            "fortitude": 2,
+            "will": 2
+          },
+          "feats": [],
+          "skills": [],
+          "spells": []
+        },
+        "invenotry": [],
+        "liveStats": {
+          "str": 12,
+          "dex": 18,
+          "con": 13,
+          "int": 18,
+          "wis": 12,
+          "cha": 11,
+          "strBonus": 0,
+          "dexBonus": 4,
+          "conBonus": 1,
+          "intBonus": 4,
+          "wisBonus": 0,
+          "chaBonus": 0,
+          "armorClass": 13,
+          "hp": 24,
+          "hpLeft": 24,
+          "savingThrows": {
+            "reflex": 6,
+            "fortitude": 3,
+            "will": 3
+          }
+        }
       },
       {
         "id": "tzel",
-        "name": "Tzel",
         "description": "Il caro vecchio Tzel",
-        "level": 1
+        "level": 1,
+        "name": "Tzel",
+        "stats": {
+          "str": 14,
+          "dex": 16,
+          "con": 10,
+          "int": 13,
+          "wis": 17,
+          "cha": 8,
+          "naturalArmor": 0,
+          "hp": 24,
+          "baseAttack": 1,
+          "baseSavingThrows": {
+            "reflex": 2,
+            "fortitude": 2,
+            "will": 2
+          },
+          "feats": [],
+          "skills": [],
+          "spells": []
+        },
+        "invenotry": [],
+        "liveStats": {
+          "str": 14,
+          "dex": 16,
+          "con": 10,
+          "int": 13,
+          "wis": 17,
+          "cha": 8,
+          "strBonus": 2,
+          "dexBonus": 3,
+          "conBonus": 0,
+          "intBonus": 1,
+          "wisBonus": 3,
+          "chaBonus": -1,
+          "armorClass": 13,
+          "meleeAttack": 3,
+          "rangedAttack": 4,
+          "hp": 30,
+          "hpLeft": 30,
+          "savingThrows": {
+            "reflex": 5,
+            "fortitude": 2,
+            "will": 5
+          }
+        }
       }
     ],
     "name": "game-1",

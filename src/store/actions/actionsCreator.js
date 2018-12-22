@@ -1,5 +1,6 @@
 import axios from 'axios';
 import store from '../store';
+import { D20Math } from '../../gameFunctions/d20Math';
 
 import { stages } from "../../firebase/firbase.js"
 import { games } from "../../firebase/firbase.js"
@@ -55,6 +56,7 @@ export const loadLevel = (stageId, levelId) => {
       const pcs = res.pcTeam;
       const npcs = res.npcTeams.reduce((charList, team) => {
         team.characters.forEach(element => {
+          element.team = team.name;
           charList.push(element);
         });
         return charList;
@@ -76,7 +78,29 @@ export const loadLevel = (stageId, levelId) => {
         type: "ADD_LOG_ENTRY",
         payload: "Game loaded"
       })
+      dispatch(rollInitiatives());
     });
+  }
+}
+
+export const rollInitiatives = () => {
+  return (dispatch, getState) => {
+    getState().characterList.forEach( char => {
+      console.log(D20Math);
+        const init = char.liveStats.dexBonus + D20Math.rollD20();
+        dispatch({
+          type: 'SET_CHARACTER_INITIATIVE',
+          payload: { id: char.id, initiative: init }
+        })
+        dispatch({
+          type: "ADD_LOG_ENTRY",
+          payload: `${char.name} rolls initiative: ${init}`
+        });
+    });
+
+    dispatch({
+      type: "ORDER_CHARACTER_BY_INITIATIVE"
+    })
   }
 }
 

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { loadGame } from "../store/actions/actionsCreator.js";
 import { bindActionCreators } from "redux";
 import ActionLogConsole from "../components/actionLogConsole/actionLogConsole";
+import CharacterSheet from "../components/characterSheet/characterSheet"
 
 class GameContainer extends Component {
   componentDidMount () {
@@ -15,7 +16,7 @@ class GameContainer extends Component {
 
   render() {
     const characters = this.props.characters.map(c => {
-        return <div key={c.id}> name: {c.name}</div>
+      return <div key={c.id}> name: {c.name}, - initiative: {c.initiative}</div>
     });
     const stageName = this.props.stage ? this.props.stage.name : "Loading";
     const level = this.props.level ? ` - ${this.props.level.id + 1} ${this.props.level.map}` : "";
@@ -37,6 +38,7 @@ class GameContainer extends Component {
           RELOAD
         </div>
         <ActionLogConsole messages = {this.props.logs}></ActionLogConsole>
+        <CharacterSheet></CharacterSheet>
       </div>
     )
   }

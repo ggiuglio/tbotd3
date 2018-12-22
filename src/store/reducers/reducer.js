@@ -49,6 +49,28 @@ const Reducer = (state = INITIAL_STATE, action) => {
             
             return {...state, ...{logMessages: messages}}
         }
+        case 'SET_CHARACTER_INITIATIVE':
+        {
+            const characterList = JSON.parse(JSON.stringify(state.characterList));
+            characterList.map(char => {
+                if (char.id === action.payload.id) {
+                    char.initiative = action.payload.initiative;
+                }
+                return char;
+            }); 
+            return {...state, ...{characterList: characterList} }
+        }
+        case 'ORDER_CHARACTER_BY_INITIATIVE': {
+            const characterList = JSON.parse(JSON.stringify(state.characterList));                
+            characterList.sort((a, b) => {
+                    if (a.initiative > b.initiative || 
+                        (a.initiative === b.initiative && a.liveStats.dexBonus >= b.liveStats.dexBonus)) {
+                            return -1;
+                    } else return 1
+                });
+            
+            return {...state, ...{characterList: characterList} }
+        }
 
 
 
