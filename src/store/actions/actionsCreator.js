@@ -8,6 +8,7 @@ import { games } from "../../firebase/firbase.js"
 
 import { SET_STAGE, LOAD_GAME } from './actionsTypes.js'
 import { SET_PCS } from './actionsTypes.js'
+import { checkServerIdentity } from 'tls';
 
 
 export const loadGame = () => {
@@ -17,10 +18,10 @@ export const loadGame = () => {
       payload: null
     });
     games.on('value', snapshot => {
-      const game = snapshot.val();
+      const game = JSON.parse(JSON.stringify(snapshot.val()));
       dispatch({
         type: SET_PCS,
-        payload: game.pcs
+        payload: game.pcs    
       });
 
       dispatch (loadStage(game.stageId));
@@ -31,7 +32,7 @@ export const loadGame = () => {
 export const loadStage = (stageId) => {
   return dispatch => {
     stages.orderByKey().equalTo(stageId.toString()).on('value', snapshot => {
-      const res = snapshot.val()[stageId];
+      const res = JSON.parse(JSON.stringify(snapshot.val()[stageId]));
       const stage = {
         id: stageId,
         name: res.name
@@ -48,7 +49,7 @@ export const loadStage = (stageId) => {
 export const loadLevel = (stageId, levelId) => {
   return dispatch => {
     stages.orderByKey().equalTo(stageId.toString()).on('value', snapshot => {
-      const res = snapshot.val()[stageId].levels[levelId];
+      const res = JSON.parse(JSON.stringify(snapshot.val()[stageId].levels[levelId]));
       const level = {
         map: res.map,
         id: levelId
@@ -78,7 +79,17 @@ export const loadLevel = (stageId, levelId) => {
         type: "ADD_LOG_ENTRY",
         payload: "Game loaded"
       })
+
+      dispatch(loadCharactesLiveStats());
       dispatch(rollInitiatives());
+    });
+  }
+}
+
+export const loadCharactesLiveStats = () => {
+  return (dispatch, getState) => {
+    getState().characterList.forEach( char => {
+      dispatch(calculateLiveStats(char));
     });
   }
 }
@@ -86,7 +97,6 @@ export const loadLevel = (stageId, levelId) => {
 export const rollInitiatives = () => {
   return (dispatch, getState) => {
     getState().characterList.forEach( char => {
-      console.log(D20Math);
         const init = char.liveStats.dexBonus + D20Math.rollD20();
         dispatch({
           type: 'SET_CHARACTER_INITIATIVE',
@@ -104,6 +114,39 @@ export const rollInitiatives = () => {
   }
 }
 
+export const calculateLiveStats = (char) => {
+  //TODO will need to be updated when equipment and spells will be implemented
+  return (dispatch) => {
+    const liveStats = {
+        str: char.stats.str,
+        dex: char.stats.dex,
+        con: char.stats.con,
+        int: char.stats.int,
+        wis: char.stats.wis,
+        cha: char.stats.cha,
+        strBonus: D20Math.calculateStatsBonus(char.stats.str),
+        dexBonus: D20Math.calculateStatsBonus(char.stats.dex),
+        conBonus: D20Math.calculateStatsBonus(char.stats.con),
+        intBonus: D20Math.calculateStatsBonus(char.stats.int),
+        wisBonus: D20Math.calculateStatsBonus(char.stats.wis),
+        chaBonus: D20Math.calculateStatsBonus(char.stats.cha),
+        armorClass: 13,
+        hp: char.stats.hp,
+        hpLost: char.liveStats && char.liveStats.hpLost ? char.liveStats.hpLost : 0
+    };
+
+    liveStats.savingThrows = {
+      reflex: char.stats.baseSavingThrows.reflex + liveStats.dexBonus,
+      fortitude: char.stats.baseSavingThrows.fortitude + liveStats.conBonus,
+      will: char.stats.baseSavingThrows.will + liveStats.wisBonus
+    }
+
+    dispatch({
+      type: "SET_CHAR_LIVE_STATS",
+      payload: { id: char.id, stats: liveStats}
+    })
+  }
+}
 
 
 

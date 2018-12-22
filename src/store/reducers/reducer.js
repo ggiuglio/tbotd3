@@ -71,11 +71,15 @@ const Reducer = (state = INITIAL_STATE, action) => {
             
             return {...state, ...{characterList: characterList} }
         }
-
-
-
-       
-   
+        case 'SET_CHAR_LIVE_STATS': {
+            const characterList = JSON.parse(JSON.stringify(state.characterList));                
+            characterList.forEach(char => {
+                if (char.id === action.payload.id) {
+                    char.liveStats = action.payload.stats
+                }
+            });
+            return {...state, ...{characterList: characterList} }
+        }
 
         default: 
             return state
