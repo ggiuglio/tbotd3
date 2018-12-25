@@ -6,7 +6,8 @@ import { stages } from "../../firebase/firbase.js"
 import { games } from "../../firebase/firbase.js"
 
 
-import { SET_STAGE, LOAD_GAME } from './actionsTypes.js'
+import { SET_STAGE, SET_LEVEL, LOAD_GAME, SET_ACTIVE_PCS, SET_NPCS, END_TURN, ADD_LOG_ENTRY, 
+  SET_CHAR_LIVE_STATS } from './actionsTypes.js'
 import { SET_PCS } from './actionsTypes.js'
 import { checkServerIdentity } from 'tls';
 
@@ -38,7 +39,7 @@ export const loadStage = (stageId) => {
         name: res.name
       };
       dispatch({
-        type: "SET_STAGE",
+        type: SET_STAGE,
         payload: stage
       });
       dispatch(loadLevel(stageId, 0));
@@ -64,19 +65,19 @@ export const loadLevel = (stageId, levelId) => {
       }, []);
 
       dispatch({
-        type: "SET_LEVEL",
+        type: SET_LEVEL,
         payload: level
       });
       dispatch({
-        type: "SET_ACTIVE_PCS",
+        type: SET_ACTIVE_PCS,
         payload: pcs
       });
       dispatch({
-        type: "SET_NPCS",
+        type: SET_NPCS,
         payload: npcs
       })
       dispatch({
-        type: "ADD_LOG_ENTRY",
+        type: ADD_LOG_ENTRY,
         payload: "Game loaded"
       })
 
@@ -142,8 +143,17 @@ export const calculateLiveStats = (char) => {
     }
 
     dispatch({
-      type: "SET_CHAR_LIVE_STATS",
+      type: SET_CHAR_LIVE_STATS,
       payload: { id: char.id, stats: liveStats}
+    })
+  }
+}
+
+export const endTurn = () => {
+  return (dispatch) => {
+    dispatch({
+      type: END_TURN,
+      payload: null
     })
   }
 }

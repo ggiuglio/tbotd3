@@ -1,6 +1,10 @@
+import { SET_STAGE, LOAD_GAME, END_TURN } from '../actions/actionsTypes'
+
+
 export const INITIAL_STATE = {
     stage: null,
     level: null,
+    activeCharacter: null,
     gamePCs: [],
     logMessages: [],
     characterList: []
@@ -69,7 +73,7 @@ const Reducer = (state = INITIAL_STATE, action) => {
                     } else return 1
                 });
             
-            return {...state, ...{characterList: characterList} }
+            return {...state, ...{characterList: characterList, activeCharacter: characterList[0]} }
         }
         case 'SET_CHAR_LIVE_STATS': {
             const characterList = JSON.parse(JSON.stringify(state.characterList));                
@@ -79,6 +83,18 @@ const Reducer = (state = INITIAL_STATE, action) => {
                 }
             });
             return {...state, ...{characterList: characterList} }
+        }
+
+        case END_TURN: {
+            let activeCharacter = null;
+            state.characterList.forEach((char, i) => {
+                if (char.id === state.activeCharacter.id) {
+                    if (i < state.characterList.length - 1) {
+                        activeCharacter =state.characterList[i + 1];
+                    } else activeCharacter = state.characterList[0];
+                }
+            });
+            return {...state, ...{activeCharacter: activeCharacter} }
         }
 
         default: 

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loadGame } from "../store/actions/actionsCreator.js";
+import { loadGame, endTurn } from "../store/actions/actionsCreator.js";
 import { bindActionCreators } from "redux";
 import ActionLogConsole from "../components/actionLogConsole/actionLogConsole";
 import CharacterSheet from "../components/characterSheet/characterSheet"
+import ControlDashBoard from "../components/controlDashboard/controlDashboard"
 
 class GameContainer extends Component {
   componentDidMount () {
@@ -39,6 +40,7 @@ class GameContainer extends Component {
         </div>
         <ActionLogConsole messages = {this.props.logs}></ActionLogConsole>
         <CharacterSheet></CharacterSheet>
+        <ControlDashBoard char = {this.props.activeCharacter} endTurn = {this.props.endTurn}></ControlDashBoard>
       </div>
     )
   }
@@ -49,14 +51,16 @@ const mapStateToProps = state => {
     characters: state.characterList,
     stage: state.stage,
     level: state.level,
-    logs: state.logMessages
+    logs: state.logMessages,
+    activeCharacter: state.activeCharacter
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      loadGame
+      loadGame,
+      endTurn
     },
     dispatch
   );
