@@ -1,8 +1,6 @@
 import React from 'react';
 import "./controlDashboard.css"
 
-
-
 const ControlDashboard = ({char, endTurn}) => {
   const handleEndTurn = () => {
     if (char) {
