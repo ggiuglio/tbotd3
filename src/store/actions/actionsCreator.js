@@ -1,13 +1,10 @@
 import axios from 'axios';
 import store from '../store';
 import { D20Math } from '../../gameFunctions/d20Math';
-
 import { stages } from "../../firebase/firbase.js"
 import { games } from "../../firebase/firbase.js"
-
-
 import { SET_STAGE, SET_LEVEL, LOAD_GAME, SET_ACTIVE_PCS, SET_NPCS, END_TURN, ADD_LOG_ENTRY, 
-  SET_CHAR_LIVE_STATS } from './actionsTypes.js'
+  SET_CHAR_LIVE_STATS, TOGGLE_CHAR_SHEET, TOGGLE_INVENTORY, CLOSE_CHAR_SHEET, CLOSE_INVENTORY } from './actionsTypes.js'
 import { SET_PCS } from './actionsTypes.js'
 import { checkServerIdentity } from 'tls';
 
@@ -158,8 +155,37 @@ export const endTurn = () => {
   }
 }
 
+export const toggleCharSheet = () => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_CHAR_SHEET
+    })
+  }
+}
 
+export const toggleInventory = () => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_INVENTORY
+    })
+  }
+}
 
+export const closeCharSheet = () => {
+  return dispatch => {
+    dispatch({
+      type: CLOSE_CHAR_SHEET
+    })
+  }
+}
+
+export const closeInventory= () => {
+  return dispatch => {
+    dispatch({
+      type: CLOSE_INVENTORY
+    })
+  }
+}
 
 
 

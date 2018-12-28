@@ -1,10 +1,20 @@
 import React from 'react';
 import "./controlDashboard.css"
 
-const ControlDashboard = ({char, endTurn}) => {
+const ControlDashboard = ({char, endTurn, toggleCharSheet, toggleInventory}) => {
   const handleEndTurn = () => {
     if (char) {
       endTurn();
+    }
+  }
+  const handleToggleCharacterSheet = () => {
+    if (char) {
+      toggleCharSheet();
+    }
+  }
+  const handleToggleInventory = () => {
+    if (char) {
+      toggleInventory();
     }
   }
 
@@ -13,7 +23,7 @@ const activeCharName = char ? char.name : "";
   return (
     <div className="dashBoard">
       <div className="lateralCommandBox">
-        Character sheet
+        <span onClick={() => handleToggleCharacterSheet()}> Char </span>
       </div>
 
       <div className="centralSpace">
@@ -25,7 +35,7 @@ const activeCharName = char ? char.name : "";
       </div>
 
       <div className="lateralCommandBox">
-        Equipment
+        <span onClick = {() => handleToggleInventory()}> Euip </span>
       </div>
     </div>
   )

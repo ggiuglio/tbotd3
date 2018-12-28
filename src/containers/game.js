@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loadGame, endTurn } from "../store/actions/actionsCreator.js";
+import { loadGame, endTurn, toggleCharSheet, toggleInventory, closeCharSheet, closeInventory } from "../store/actions/actionsCreator.js";
 import { bindActionCreators } from "redux";
 import ActionLogConsole from "../components/actionLogConsole/actionLogConsole";
-import CharacterSheet from "../components/characterSheet/characterSheet"
+import CharacterSheet from "../components/characterSheet/characterSheet";
+import Inventory from "../components/inventory/inventory";
 import ControlDashBoard from "../components/controlDashboard/controlDashboard"
 
 class GameContainer extends Component {
@@ -21,6 +22,18 @@ class GameContainer extends Component {
     });
     const stageName = this.props.stage ? this.props.stage.name : "Loading";
     const level = this.props.level ? ` - ${this.props.level.id + 1} ${this.props.level.map}` : "";
+    const charOnTop = this.props.charSheet.onTop ? "char sheet ontop": '';
+    const invOnTop = this.props.inventory.onTop ? "inventory ontop": '';
+
+    const charSheetTemplate = this.props.activeCharacter && this.props.charSheet.open ? 
+    <CharacterSheet char = {this.props.activeCharacter} onTop = {this.props.charSheet.onTop} 
+      closeCharSheet = {this.props.closeCharSheet}> 
+    </CharacterSheet> : '';
+
+    const inventoryTemplate = this.props.activeCharacter && this.props.inventory.open ?
+    <Inventory char = {this.props.activeCharacter} onTop = {this.props.inventory.onTop} 
+      closeInventory = {this.props.closeInventory}> 
+    </Inventory> : '';
 
     return (
       <div>
@@ -39,8 +52,11 @@ class GameContainer extends Component {
           RELOAD
         </div>
         <ActionLogConsole messages = {this.props.logs}></ActionLogConsole>
-        <CharacterSheet></CharacterSheet>
-        <ControlDashBoard char = {this.props.activeCharacter} endTurn = {this.props.endTurn}></ControlDashBoard>
+        {charSheetTemplate}
+        {inventoryTemplate}
+        <ControlDashBoard char = {this.props.activeCharacter} endTurn = {this.props.endTurn} 
+          toggleCharSheet = {this.props.toggleCharSheet} toggleInventory = {this.props.toggleInventory}>
+        </ControlDashBoard>
       </div>
     )
   }
@@ -52,7 +68,9 @@ const mapStateToProps = state => {
     stage: state.stage,
     level: state.level,
     logs: state.logMessages,
-    activeCharacter: state.activeCharacter
+    activeCharacter: state.activeCharacter,
+    charSheet: state.charSheet,
+    inventory: state.inventory
   }
 };
 
@@ -60,7 +78,11 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       loadGame,
-      endTurn
+      endTurn,
+      toggleCharSheet,
+      toggleInventory,
+      closeCharSheet,
+      closeInventory
     },
     dispatch
   );
