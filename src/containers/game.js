@@ -5,7 +5,8 @@ import { bindActionCreators } from "redux";
 import ActionLogConsole from "../components/actionLogConsole/actionLogConsole";
 import CharacterSheet from "../components/characterSheet/characterSheet";
 import Inventory from "../components/inventory/inventory";
-import ControlDashBoard from "../components/controlDashboard/controlDashboard"
+import ControlDashBoard from "../components/controlDashboard/controlDashboard";
+import GameBoard from "../components/gameBoard/gameBoard";
 
 class GameContainer extends Component {
   componentDidMount () {
@@ -37,20 +38,18 @@ class GameContainer extends Component {
 
     return (
       <div>
+        
         TBODT 3 (quella buona)
-        <div>
-          {stageName} {level}
-        </div>
-       
-        <div>
-          characters
-        </div>
-        <div>
-          {characters}
-        </div>
+        <GameBoard></GameBoard>
+
+
+
         <div onClick={(e) => this.handleClick(e)} >
           RELOAD
         </div>
+
+
+
         <ActionLogConsole messages = {this.props.logs}></ActionLogConsole>
         {charSheetTemplate}
         {inventoryTemplate}

@@ -9,7 +9,7 @@ const ActionLogConsole = ({messages}) => {
   });
 
   return (
-    <div>
+    <div className="logsConsole">
       {logs}
     </div>
   )

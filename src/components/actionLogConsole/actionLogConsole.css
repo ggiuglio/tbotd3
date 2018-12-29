@@ -1,0 +1,10 @@
+.logsConsole{
+  position: fixed;
+  bottom: 70px;
+  left: 10px;
+  width: calc(100% - 38px);
+  padding: 8px;
+  border: 1px solid #335544;
+  height: 50px;
+  overflow-y: auto;
+}
