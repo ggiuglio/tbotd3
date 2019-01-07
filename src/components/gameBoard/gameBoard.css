@@ -1,0 +1,18 @@
+.mapContainer {
+  position: absolute;
+  width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  top: 0;
+}
+
+.map {
+  width: 1500px;
+  height: 1500px;
+}
+
+.ontop {
+  position: absolute;
+  top: 10px;
+  z-index: 1000;
+}
