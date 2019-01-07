@@ -25,7 +25,7 @@ class GameBoard extends Component {
     const moveX = x - this.state.dragOffsetX;
     const moveY = y - this.state.dragOffsetY;
    
-    if(x > 0 || y > 0) { // this is to avoid problems appenling with mouse up still triggering onDrag
+    if(x > 0 && y > 0) { // this is to avoid problems appenling with mouse up still triggering onDrag
       this.setState({marginLeft: Math.round(this.state.marginLeft + moveX), 
         marginTop: Math.round(this.state.marginTop + moveY),
         dragOffsetX: x, 
